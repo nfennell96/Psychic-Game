@@ -1,51 +1,51 @@
-// letters
+// Array for the random psychic letters chosen 
+const alphabetArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
+    'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g','h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z']
+// Array to catch wrong letters that the player guesses
+let wrongLetterArray = [];
 
+// Variables
+let wins = 0;
+let losses = 0;
+let guessLeft = 10;
+let guessSoFar = 0;
 
-var wins = 0;
-var losses = 0;
-var guessesLeft = 9;
-var letterUser; []
-var eachofLetters = null;
+//capture the player's selected letter they press on their keyboard
+document.addEventListener('keypress', (event) => {
+    let playerKeyCode = event.keyCode;
+    let playerKeyCodeConverted = String.fromCharCode(playerKeyCode);
 
-var computerGuess = letters[Math.floor(math.random() * letters.length)];
+    //This variable generates a random number which is used for the psychic's letter
+    let randomNumber = Math.floor(Math.random() * alphabetArray.length);
+  
+    //This assigns a random array letter to the psychicLetter variable
+    let psychicLetter = alphabetArray[randomNumber];
 
-function countGuessesLeft(); {
-
-    document.queryselector("#letter").innerHTML = "Guesses Left: " + guessesLeft;
-}
-
-function farUserGuesses() {
-    document.querySelector("#letter").innerHTML = "Your Guesses so far: " + letterUser.join(' ');
-}
-
-countGuessesLeft();
-
-var restart = function() {
-    guessesLeft = 9;
-    letterUser = [];
-    var computerGuess = letters[Math.floor(Math.random() * letters.length)];
-}
-
-document.onkeyup = function(event) {
-    guessesLeft--;
-
-    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-    letterUser.push(userGuess);
-    countGuessesLeft();
-    farUserGuesses();
-
-    if (userGuess === computerGuess){
+    if(playerKeyCodeConverted == psychicLetter) {
+        alert("You Win!");
         wins++;
-        document.querySelector("#wins").innerHTML = "Wins: " + wins;
-        restart();
+        guessLeft = 10;
+        wrongLetterArray = [];
+    } else {
+        // add the incorrect letter to the wrongLetterArray and decrease the amount of guesses left
+        wrongLetterArray.push(playerKeyCodeConverted);
+        guessLeft--;
+        guessSoFar++;
     }
-
-    else if (guessesLeft === 0) {
+    
+    // if there are 10 consecutive incorrect guesses the player loses
+    if(guessLeft === 0) {
+        alert("You Lose! Try again.");
+        guessSoFar = 0;
+        guessLeft = 10;
         losses++;
-        document.querySelector("#lose").innerHTML = "Losses: " + losses;
-        restart();
+        wrongLetterArray = [];
     }
-};
+    
+    // code to manipulate the Document Object Model (DOM)
+    document.getElementById("idGuessLeft").innerHTML = (guessLeft);
+    document.getElementById("idWins").innerHTML = (wins);
+    document.getElementById("idLosses").innerHTML = (losses);
+    document.getElementById("idGuessSoFar").innerHTML = (wrongLetterArray);
+});
