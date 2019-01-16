@@ -44,8 +44,8 @@ document.addEventListener('keypress', (event) => {
     }
     
     // code to manipulate the Document Object Model (DOM)
-    document.getElementById("idGuessLeft").innerHTML = (guessLeft);
-    document.getElementById("idWins").innerHTML = (wins);
-    document.getElementById("idLosses").innerHTML = (losses);
-    document.getElementById("idGuessSoFar").innerHTML = (wrongLetterArray);
+    document.getElementById("guessesLeft").innerHTML = (guessLeft);
+    document.getElementById("wins").innerHTML = (wins);
+    document.getElementById("Losses").innerHTML = (losses);
+    document.getElementById("GuessSoFar").innerHTML = (wrongLetterArray);
 });
