@@ -30,6 +30,7 @@ document.addEventListener('keypress', (event) => {
     } else {
         // add the incorrect letter to the wrongLetterArray and decrease the amount of guesses left
         wrongLetterArray.push(playerKeyCodeConverted);
+        console.log(wrongLetterArray);
         guessLeft--;
         guessSoFar++;
     }
@@ -47,5 +48,5 @@ document.addEventListener('keypress', (event) => {
     document.getElementById("guessesLeft").innerHTML = (guessLeft);
     document.getElementById("wins").innerHTML = (wins);
     document.getElementById("Losses").innerHTML = (losses);
-    document.getElementById("GuessSoFar").innerHTML = (wrongLetterArray);
+    document.getElementById("GuessesSoFar").innerHTML = (wrongLetterArray);
 });
